@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator & Scanner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <header>
+      <h1>QR Code Generator & Scanner</h1>
+      <label class="toggle">
+        <input type="checkbox" id="themeToggle" />
+        <span>Dark Mode</span>
+      </label>
+    </header>
+
+    <nav>
+      <button onclick="switchTab('generate')">Generate QR</button>
+      <button onclick="switchTab('scanner')">Scan QR</button>
+      <button onclick="switchTab('saved')">Saved Codes</button>
+      <button onclick="switchTab('history')">Scan History</button>
+    </nav>
+
+    <main>
+      <!-- Generate QR Code Tab -->
+      <section id="generate" class="tab active">
+        <h2>Generate QR Code</h2>
+        <input type="text" id="qrInput" placeholder="Enter text or URL" />
+        <input type="text" id="qrLabel" placeholder="Label (optional)" />
+        <label>Pick Color: 
+          <input type="color" id="qrColor" value="#000000" />
+        </label>
+        <br />
+        <button onclick="generateQR()">Generate</button>
+        <div id="qrOutput"></div>
+        <a id="downloadLink" download="qr-code.png">Download QR</a>
+      </section>
+
+      <!-- QR Scanner Tab -->
+      <section id="scanner" class="tab">
+        <h2>QR Scanner</h2>
+        <video id="qrVideo" autoplay></video>
+        <p id="scanResult">Scanning result will appear here...</p>
+      </section>
+
+      <!-- Saved QR Codes Tab -->
+      <section id="saved" class="tab">
+        <h2>Saved QR Codes</h2>
+        <ul id="savedList"></ul>
+      </section>
+
+      <!-- Scan History Tab -->
+      <section id="history" class="tab">
+        <h2>Scan History</h2>
+        <input type="text" id="searchHistory" placeholder="Search..." oninput="filterHistory()" />
+        <ul id="scanHistoryList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
